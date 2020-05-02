@@ -209,7 +209,7 @@ void Sistema:: subsecuencia(std:: string subsecuencia){
 }
 
 void Sistema::enmascarar(std:: string comando){
-	//No hay secuencias cargadas en memoria.
+	/*//No hay secuencias cargadas en memoria.
 	if(secuencias.begin()==secuencias.end()){
 		std::cout<<"No hay secuencias cargadas"<<'\n';
 		}
@@ -249,7 +249,7 @@ void Sistema::enmascarar(std:: string comando){
 			//s secuencias han sido enmascaradas.
 			std::cout<<"Varias subsecuencias esmascaradas."<<'\n';
 		}
-	}
+	}*/
 }
 
 //Procedimiento encargado de guardar las estructuras en archivos al sistema
