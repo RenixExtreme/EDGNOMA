@@ -208,7 +208,34 @@ void Sistema:: subsecuencia(std:: string subsecuencia){
 	}
 }
 
+//Función auxiliar para crear la mascara
+std::string Sistema::mascara(int tam) {
+	std::string mascara;
+	for(int i=0; i<tam;i++){
+		mascara.push_back('X');
+	}
+	return mascara;
+}
+
+//Procedimiento para enmascarar una subsecuencia en las secuencias ya cargadas en el Sistema
 void Sistema::enmascarar(std:: string comando){
+	std::list<Secuencia>::iterator itPr;
+	std::list<char>::iterator itSec;
+	std::string premasc;
+	int tam_masc=comando.length();
+	std::string mask=mascara(tam_masc);
+	for(itPr=secuencias.begin();itPr!=secuencias.end();itPr++){
+		for(itSec=itPr->getSecuencia().begin();itSec!=itPr->getSecuencia().end();itSec++){
+			premasc.push_back(*itSec);
+		}
+		std::string::size_type pos = premasc.find(comando, 0);
+		if(pos< std::string::npos){
+			premasc.replace(pos, tam_masc, mask);
+		}
+		std::list<char> enmascarada(premasc.begin(), premasc.end());
+		itPr->setSecuencia(enmascarada);
+	}
+
 	/*//No hay secuencias cargadas en memoria.
 	if(secuencias.begin()==secuencias.end()){
 		std::cout<<"No hay secuencias cargadas"<<'\n';
