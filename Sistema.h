@@ -23,6 +23,7 @@ class Sistema {
 		void histograma(std::string nameSecuencia);
 		void subsecuencia(std:: string subsecuencia);
 		void enmascarar(std:: string comando);
+		std::string mascara(int tam);
 };
 
 #include "Sistema.hpp"
