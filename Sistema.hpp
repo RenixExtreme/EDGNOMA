@@ -327,8 +327,12 @@ void Sistema:: menu_aiuda(std::string comando){
 	case 7:
 		std::cout<<"guardar + [nombre_archivo]. Ejemplo: guardar + archivo_salida."<<'\n';
 		std::cout<<"Guarda en el archivo nombre_archivo las secuencias cargadas en memoria."<<'\n';
+		case 8:
+    	std::cout<<"codificar + [nombre_archivo]. Ejemplo: codificar archivo_prueba."<<std::endl;
+  		std::cout<<"Codifica y comprime un archivo .fasta cargado en memoria, y lo guarda como un archivo .fastabin" <<std::endl;
+		
 		break;
-	case 8:
+	case 9:
 		std::cout<<"Los comandos disponibles son:\n";
 		std::cout<<"cargar + [nombre_archivo]. Ejemplo: cargar fasta.fa ."<<'\n';
 		std::cout<<"conteo."<<'\n';
@@ -337,6 +341,7 @@ void Sistema:: menu_aiuda(std::string comando){
 		std::cout<<"es_subsecuencia + [secuencia]. Ejemplo: es_subsecuencia subsecuencia."<<'\n';
 		std::cout<<"enmascarar + [secuencia]. enmascarar secuencia."<<'\n';
 		std::cout<<"guardar + [nombre_archivo]. Ejemplo: guardar + archivo_salida."<<'\n';
+    	std::cout<<"codificar + [nombre_archivo]. Ejemplo: codificar archivo_prueba."<<std::endl;
 		break;
 	default:
 		std::cout<<"El comando ingresado no existe."<<'\n';
