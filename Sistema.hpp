@@ -1,3 +1,30 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@RenixExtreme 
+JohnSGarciaV
+/
+EDGNOMA
+1
+00
+ Code
+ Issues 0
+ Pull requests 0 Actions
+ Projects 0
+ Wiki
+ Security 0
+ Insights
+EDGNOMA/Sistema.hpp
+@nperalta93 nperalta93 Enmascarar v_final
+f263ea6 19 minutes ago
+@nperalta93@JohnSGarciaV
+350 lines (327 sloc)  10.2 KB
+  
 #ifndef SISTEMA_HPP_
 #define SISTEMA_HPP_
 
@@ -27,7 +54,7 @@ void Sistema:: menu_ppal(std::string comando){
 		subsecuencia(comando.substr(16));
 	}
 	else if(comando.substr(0,10).compare("enmascarar")==0){
-		enmascarar(comando);
+		enmascarar(comando.substr(11));
 	}
 	else if(comando.substr(0,7).compare("guardar")==0){
 		guardar(comando.substr(8));
@@ -208,49 +235,50 @@ void Sistema:: subsecuencia(std:: string subsecuencia){
 	}
 }
 
-void Sistema::enmascarar(std:: string comando){
-	/*//No hay secuencias cargadas en memoria.
-	if(secuencias.begin()==secuencias.end()){
-		std::cout<<"No hay secuencias cargadas"<<'\n';
-		}
-	//Buscar el nombre de la secuencia.
-	std:: list<Secuencia>::iterator it = secuencias.begin();
-	int pausa=0;
-	while(it != secuencias.end()){
-		if(comando.substr(11)==it->getNombre()){
-			Secuencia temporal;
-			std:: string nombretemp;
-			std:: list<char>secu;
-			for (int i = 0; i < it->getSecuencia().size(); ++i)
-			{
-				secu.push_back('X');
-			}
-				//secu.push_back('\n');
-			temporal.setNombre(it->getNombre());
-			temporal.setSecuencia(secu);
-			secuencias.insert(it, temporal);
-			secuencias.erase(it++);
-			pausa++;
-		}
-		it++;
+//Función auxiliar para crear la mascara
+std::string Sistema::mascara(int tam) {
+	std::string mascara;
+	for(int i=0; i<tam;i++){
+		mascara.push_back('X');
 	}
-	if (pausa==0)
-	{
-		//La secuencia dada no existe, por tanto no se enmascara nada.
-		std::cout<<"No se enmascararon subsecuencias."<<'\n';
-	}else
-	{
-		if (pausa==1)
-		{
-			//1 secuencia ha sido enmascarada.
-			std::cout<<"Una subsecuencia enmascarada."<<'\n';
-		}else
-		{
-			//s secuencias han sido enmascaradas.
-			std::cout<<"Varias subsecuencias esmascaradas."<<'\n';
-		}
-	}*/
+	return mascara;
 }
+
+//Procedimiento para enmascarar una subsecuencia en las secuencias ya cargadas en el Sistema
+void Sistema::enmascarar(std:: string comando){
+	std::list<Secuencia>::iterator itPr;
+	std::list<char>::iterator itSec;
+	std::string premasc;
+
+	int tam_masc=comando.length();
+	std::string mask=mascara(tam_masc);
+	for(itPr=secuencias.begin();itPr!=secuencias.end();itPr++){
+		for(itSec=itPr->getSecuencia().begin();itSec!=itPr->getSecuencia().end();itSec++){
+			premasc.push_back(*itSec);
+		}
+		std::string::size_type pos = 0;
+		while((pos = premasc.find(comando, pos)) < std::string::npos){
+			premasc.replace(pos, tam_masc,mask);
+			pos+=comando.size();
+		}
+		/*std::string::size_type pos = premasc.find(comando, 0);
+		if(pos< std::string::npos){
+			premasc.replace(pos, tam_masc, mask);
+		}*/
+		std::list<char> enmascarada(premasc.begin(), premasc.end());
+		itPr->setSecuencia(enmascarada);
+	}
+}
+
+/*
+string::size_type pos = 0;
+while ((pos = original.find(fromStr, pos)) < string::npos)
+    {
+      original.replace(pos, fromStr.length(), toStr);
+      pos+=toStr.size();    // Muy importante sumar el tamaño de la
+                // cadena para evitar bucles infinitos.
+    }
+*/
 
 //Procedimiento encargado de guardar las estructuras en archivos al sistema
 void Sistema::guardar(std::string nombre){
@@ -327,11 +355,11 @@ void Sistema:: menu_aiuda(std::string comando){
 	case 7:
 		std::cout<<"guardar + [nombre_archivo]. Ejemplo: guardar + archivo_salida."<<'\n';
 		std::cout<<"Guarda en el archivo nombre_archivo las secuencias cargadas en memoria."<<'\n';
-		case 8:
+		break;
+	case 8:
     	std::cout<<"codificar + [nombre_archivo]. Ejemplo: codificar archivo_prueba."<<std::endl;
   		std::cout<<"Codifica y comprime un archivo .fasta cargado en memoria, y lo guarda como un archivo .fastabin" <<std::endl;
 		
-		break;
 	case 9:
 		std::cout<<"Los comandos disponibles son:\n";
 		std::cout<<"cargar + [nombre_archivo]. Ejemplo: cargar fasta.fa ."<<'\n';
