@@ -222,21 +222,37 @@ void Sistema::enmascarar(std:: string comando){
 	std::list<Secuencia>::iterator itPr;
 	std::list<char>::iterator itSec;
 	std::string premasc;
-	
+
 	int tam_masc=comando.length();
 	std::string mask=mascara(tam_masc);
 	for(itPr=secuencias.begin();itPr!=secuencias.end();itPr++){
 		for(itSec=itPr->getSecuencia().begin();itSec!=itPr->getSecuencia().end();itSec++){
 			premasc.push_back(*itSec);
 		}
-		std::string::size_type pos = premasc.find(comando, 0);
+		std::string::size_type pos = 0;
+		while((pos = premasc.find(comando, pos)) < std::string::npos){
+			premasc.replace(pos, tam_masc,mask);
+			pos+=comando.size();
+		}
+		/*std::string::size_type pos = premasc.find(comando, 0);
 		if(pos< std::string::npos){
 			premasc.replace(pos, tam_masc, mask);
-		}
+		}*/
 		std::list<char> enmascarada(premasc.begin(), premasc.end());
 		itPr->setSecuencia(enmascarada);
 	}
 }
+
+/*
+string::size_type pos = 0;
+
+while ((pos = original.find(fromStr, pos)) < string::npos)
+    {
+      original.replace(pos, fromStr.length(), toStr);
+      pos+=toStr.size();    // Muy importante sumar el tamaño de la
+                // cadena para evitar bucles infinitos.
+    }
+*/
 
 //Procedimiento encargado de guardar las estructuras en archivos al sistema
 void Sistema::guardar(std::string nombre){
