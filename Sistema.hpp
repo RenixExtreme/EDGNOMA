@@ -27,7 +27,7 @@ void Sistema:: menu_ppal(std::string comando){
 		subsecuencia(comando.substr(16));
 	}
 	else if(comando.substr(0,10).compare("enmascarar")==0){
-		enmascarar(comando);
+		enmascarar(comando.substr(11));
 	}
 	else if(comando.substr(0,7).compare("guardar")==0){
 		guardar(comando.substr(8));
@@ -222,6 +222,7 @@ void Sistema::enmascarar(std:: string comando){
 	std::list<Secuencia>::iterator itPr;
 	std::list<char>::iterator itSec;
 	std::string premasc;
+	
 	int tam_masc=comando.length();
 	std::string mask=mascara(tam_masc);
 	for(itPr=secuencias.begin();itPr!=secuencias.end();itPr++){
@@ -235,48 +236,6 @@ void Sistema::enmascarar(std:: string comando){
 		std::list<char> enmascarada(premasc.begin(), premasc.end());
 		itPr->setSecuencia(enmascarada);
 	}
-
-	/*//No hay secuencias cargadas en memoria.
-	if(secuencias.begin()==secuencias.end()){
-		std::cout<<"No hay secuencias cargadas"<<'\n';
-		}
-	//Buscar el nombre de la secuencia.
-	std:: list<Secuencia>::iterator it = secuencias.begin();
-	int pausa=0;
-	while(it != secuencias.end()){
-		if(comando.substr(11)==it->getNombre()){
-			Secuencia temporal;
-			std:: string nombretemp;
-			std:: list<char>secu;
-			for (int i = 0; i < it->getSecuencia().size(); ++i)
-			{
-				secu.push_back('X');
-			}
-				//secu.push_back('\n');
-			temporal.setNombre(it->getNombre());
-			temporal.setSecuencia(secu);
-			secuencias.insert(it, temporal);
-			secuencias.erase(it++);
-			pausa++;
-		}
-		it++;
-	}
-	if (pausa==0)
-	{
-		//La secuencia dada no existe, por tanto no se enmascara nada.
-		std::cout<<"No se enmascararon subsecuencias."<<'\n';
-	}else
-	{
-		if (pausa==1)
-		{
-			//1 secuencia ha sido enmascarada.
-			std::cout<<"Una subsecuencia enmascarada."<<'\n';
-		}else
-		{
-			//s secuencias han sido enmascaradas.
-			std::cout<<"Varias subsecuencias esmascaradas."<<'\n';
-		}
-	}*/
 }
 
 //Procedimiento encargado de guardar las estructuras en archivos al sistema
