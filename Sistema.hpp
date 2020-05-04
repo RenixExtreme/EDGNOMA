@@ -32,6 +32,9 @@ void Sistema:: menu_ppal(std::string comando){
 	}
 	else if(comando.substr(0,7).compare("guardar")==0){
 		guardar(comando.substr(8));
+	}	
+	else if(comando.substr(0,9).compare("codificar")==0){
+		codificar(comando.substr(10));
 	}
 }
 
