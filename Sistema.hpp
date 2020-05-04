@@ -297,8 +297,11 @@ void Sistema:: menu_aiuda(std::string comando){
 	else if(comando.compare("help guardar")==0){
 		opc=7;
 	}
-	else if(comando.compare("help")==0){
+	else if(comando.compare("help codificar")==0){
 		opc=8;
+	}
+	else if(comando.compare("help")==0){
+		opc=9;
 	}
 
 	switch (opc){
