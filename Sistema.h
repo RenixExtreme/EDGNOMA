@@ -21,7 +21,7 @@ class Sistema {
 		void guardar(std::string nombre);
 		void cargarArchivo(std::string comando);
 		void conteo();
-		short int cantbases(std::list<char> lista);
+		short cantbases(std::list<char> lista);
 		void listar_secuencias();
 		void histograma(std::string nameSecuencia);
 		void subsecuencia(std:: string subsecuencia);

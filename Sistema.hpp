@@ -107,7 +107,7 @@ void Sistema::conteo(){
 }
 
 //Procedimiento que cuenta las bases y ayuda a la funcion
-short int Sistema:: cantbases(std::list<char> lista)
+short Sistema:: cantbases(std::list<char> lista)
 {
     char bases[]= {'A','U','T','G','C','a','u','t','g','c'};
     int cant=0;
@@ -289,6 +289,11 @@ void Sistema::codificar(std::string nombre){
 	std::list<char>::iterator itC;
 	std::list<Frecuencia>::iterator itF;
 
+
+	//Variables de estructura de codigo
+	short n;
+
+
 	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
 		for(itC=itS->getSecuencia().begin();itC!=itS->getSecuencia().end();itC++){
 			basesUnicas.push_back(*itC);
@@ -301,7 +306,8 @@ void Sistema::codificar(std::string nombre){
 	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
 
 	}
-	listarFrecuencias();	
+	listarFrecuencias();
+
 	std::cout<<"La estructura acontinuacion: "<<cantbases(basesUnicas)<<std::endl;
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
