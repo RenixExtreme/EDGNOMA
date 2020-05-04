@@ -7,6 +7,8 @@
 #include <sstream>
 #include "Secuencia.h"
 #include "Frecuencia.h"
+#include "arbolBin.h"
+#include "TablaHuffman.h"
 
 
 class Sistema {
@@ -29,6 +31,7 @@ class Sistema {
 		std::string mascara(int tam);
 		void codificar(std:: string nombre);
 		void listarFrecuencias();
+		void algoritmoHuffman();
 };
 
 #include "Sistema.hpp"

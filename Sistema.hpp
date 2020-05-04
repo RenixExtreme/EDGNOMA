@@ -336,9 +336,14 @@ void Sistema::codificar(std::string nombre){
 		//Pendiente por arreglar
 		short xi=50;
 		std::cout<<wi<<xi;
+		algoritmoHuffman();
 	}
 
 	std::cout<<std::endl;
+}
+
+void Sistema::algoritmoHuffman(){
+	list<TablaHuffman> tabla;
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
 void Sistema::listarFrecuencias(){
