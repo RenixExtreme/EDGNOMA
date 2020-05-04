@@ -291,7 +291,10 @@ void Sistema::codificar(std::string nombre){
 
 
 	//Variables de estructura de codigo
+	//n
 	short n;
+	//ns
+	int ns;
 
 
 	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
@@ -299,16 +302,29 @@ void Sistema::codificar(std::string nombre){
 			basesUnicas.push_back(*itC);
 		}
 	}
+	ns=cantbases(basesUnicas);
 	basesUnicas.sort();
 	basesUnicas.unique();
-	//estructuraBinaria = cantbases(basesTodas);
+	n=cantbases(basesUnicas);
 
-	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
+	std::cout<<"La estructura acontinuacion: "<<n;
 
-	}
+	//Aqui las frecuencias quedan en el sistema en la lista frecuencias
 	listarFrecuencias();
 
-	std::cout<<"La estructura acontinuacion: "<<cantbases(basesUnicas)<<std::endl;
+	//ci y fi
+	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
+		std::cout<<itF->getCi()<<itF->getFi();
+	}
+
+	std::cout<<ns;
+
+	//li
+	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
+		std::cout<<itS->getNombre().size();
+	}
+
+	std::cout<<std::endl;
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
 void Sistema::listarFrecuencias(){
@@ -345,7 +361,6 @@ void Sistema::listarFrecuencias(){
 		temporal.setCi(ci);
 		temporal.setFi(fi);
 		frecuencias.push_back(temporal);
-		std::cout<<"letra "<<ci<<std::endl<<"veces"<<fi<<std::endl;
 	}
 }
 
