@@ -333,7 +333,9 @@ void Sistema::codificar(std::string nombre){
 	//wi
 	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
 		long wi=itS->getSecuencia().size();
-		std::cout<<wi;
+		//Pendiente por arreglar
+		short xi=50;
+		std::cout<<wi<<xi;
 	}
 
 	std::cout<<std::endl;
