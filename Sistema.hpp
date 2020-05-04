@@ -344,6 +344,23 @@ void Sistema::codificar(std::string nombre){
 
 void Sistema::algoritmoHuffman(){
 	list<TablaHuffman> tabla;
+	TablaHuffman unico;
+
+	char dato;
+    long peso;
+    int izquierda;
+    int derecha;
+    bool sumado;
+
+	std::list<Frecuencia>::iterator itF;
+
+	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
+		unico.dato=itF->getCi();
+		unico.peso=itF->getFi();
+		unico.izquierda=0;
+		unico.derecha=0;
+		unico.sumado=false;
+	}
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
 void Sistema::listarFrecuencias(){

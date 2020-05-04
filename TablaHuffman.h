@@ -5,7 +5,7 @@ struct TablaHuffman
 {
 public :
     char dato;
-    long frecuencia;
+    long peso;
     int izquierda;
     int derecha;
     bool sumado;
