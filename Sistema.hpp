@@ -281,10 +281,28 @@ void Sistema::guardar(std::string nombre){
 //  codificación de Huffman en el formato descrito más arriba
 //  almacenándolo en disco bajo el nombre nombre_archivo.fabin.
 void Sistema::codificar(std::string nombre){
-	//ci y fi son dos números entero de 1 y 8 bytesç
-	std::string estructuraBinaria;
-	estructuraBinaria << cantbases;
+	//ci y fi son dos números entero de 1 y 8 bytes
+
+	std::list<char> basesUnicas;
+
+	std::list<Secuencia>::iterator itS;
+	std::list<char>::iterator itC;
+	std::list<Frecuencia>::iterator itF;
+
+	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
+		for(itC=itS->getSecuencia().begin();itC!=itS->getSecuencia().end();itC++){
+			basesUnicas.push_back(*itC);
+		}
+	}
+	basesUnicas.sort();
+	basesUnicas.unique();
+	//estructuraBinaria = cantbases(basesTodas);
+
+	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
+
+	}
 	listarFrecuencias();	
+	std::cout<<"La estructura acontinuacion: "<<cantbases(basesUnicas)<<std::endl;
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
 void Sistema::listarFrecuencias(){
