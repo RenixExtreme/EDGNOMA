@@ -109,21 +109,22 @@ void Sistema::conteo(){
 //Procedimiento que cuenta las bases y ayuda a la funcion
 short int Sistema:: cantbases(std::list<char> lista)
 {
-	  std::list<char> bases;
-		bases.push_front('A');
-		bases.push_front('U');
-		bases.push_front('T');
-		bases.push_front('G');
-		bases.push_front('C');
+    char bases[]= {'A','U','T','G','C','a','u','t','g','c'};
+    int cant=0;
     char c;
     int n=lista.size();
     for (int i=0; i < n; i++)
     {
         c=lista.front();
-        bases.remove(c);
+        for(int j=0; j < 10; j++)
+        {
+            if(c == bases[j]){
+                cant++;
+            }
+        }
         lista.pop_front();
     }
-    return 5-(bases.size());
+    return cant;
 }
 
 //Procedimiento para listar las secuencias
@@ -280,7 +281,9 @@ void Sistema::guardar(std::string nombre){
 //  codificación de Huffman en el formato descrito más arriba
 //  almacenándolo en disco bajo el nombre nombre_archivo.fabin.
 void Sistema::codificar(std::string nombre){
-	//ci y fi son dos números entero de 1 y 8 bytes
+	//ci y fi son dos números entero de 1 y 8 bytesç
+	std::string estructuraBinaria;
+	estructuraBinaria << cantbases;
 	listarFrecuencias();	
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
@@ -321,6 +324,8 @@ void Sistema::listarFrecuencias(){
 		std::cout<<"letra "<<ci<<std::endl<<"veces"<<fi<<std::endl;
 	}
 }
+
+
 
 //Procedimiento que provee las ayudas al usuario sobre como utilizar lso comandos del sistema
 void Sistema:: menu_aiuda(std::string comando){
