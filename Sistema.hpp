@@ -302,11 +302,11 @@ void Sistema::codificar(std::string nombre){
 			basesUnicas.push_back(*itC);
 		}
 	}
-	ns=cantbases(basesUnicas);
+	
 	basesUnicas.sort();
 	basesUnicas.unique();
 	n=cantbases(basesUnicas);
-
+	ns=secuencias.size();
 	std::cout<<"La estructura acontinuacion: "<<n;
 
 	//Aqui las frecuencias quedan en el sistema en la lista frecuencias
@@ -319,7 +319,7 @@ void Sistema::codificar(std::string nombre){
 
 	std::cout<<ns;
 
-	//li
+	//li y sij
 	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
 		short li=itS->getNombre().size();
 		std::cout<<li;
@@ -328,6 +328,12 @@ void Sistema::codificar(std::string nombre){
 			char sij=itS->getNombre()[i];
 			std::cout<<sij;
 		}
+	}
+
+	//wi
+	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
+		long wi=itS->getSecuencia().size();
+		std::cout<<wi;
 	}
 
 	std::cout<<std::endl;
