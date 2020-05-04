@@ -330,14 +330,16 @@ void Sistema::codificar(std::string nombre){
 		}
 	}
 
+
+	
 	//wi
 	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
 		long wi=itS->getSecuencia().size();
 		//Pendiente por arreglar
 		short xi=50;
 		std::cout<<wi<<xi;
-		algoritmoHuffman();
 	}
+	algoritmoHuffman();
 
 	std::cout<<std::endl;
 }
@@ -360,7 +362,12 @@ void Sistema::algoritmoHuffman(){
 		unico.izquierda=0;
 		unico.derecha=0;
 		unico.sumado=false;
+
+		std::cout<<"\n"<<unico.dato<<" "<<unico.peso<<std::endl;
 	}
+
+	
+
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
 void Sistema::listarFrecuencias(){
