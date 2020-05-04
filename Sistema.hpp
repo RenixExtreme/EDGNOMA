@@ -283,7 +283,7 @@ void Sistema::codificar(std::string nombre){
 	//ci y fi son dos números entero de 1 y 8 bytes
 	listarFrecuencias();	
 }
-
+// Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
 void Sistema::listarFrecuencias(){
 
 	Frecuencia temporal;
