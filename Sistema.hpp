@@ -321,7 +321,13 @@ void Sistema::codificar(std::string nombre){
 
 	//li
 	for(itS=secuencias.begin();itS!=secuencias.end();itS++){
-		std::cout<<itS->getNombre().size();
+		short li=itS->getNombre().size();
+		std::cout<<li;
+		for (int i = 0; i < itS->getNombre().size(); ++i)
+		{
+			char sij=itS->getNombre()[i];
+			std::cout<<sij;
+		}
 	}
 
 	std::cout<<std::endl;
