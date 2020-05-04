@@ -6,10 +6,13 @@
 #include <fstream>
 #include <sstream>
 #include "Secuencia.h"
+#include "Frecuencia.h"
+
 
 class Sistema {
 	protected:
 		std::list<Secuencia> secuencias;
+		std::list<Frecuencia> frecuencias;
 	public:
 		Sistema();
 		void menu_aiuda(std::string comando);
@@ -24,6 +27,8 @@ class Sistema {
 		void subsecuencia(std:: string subsecuencia);
 		void enmascarar(std:: string comando);
 		std::string mascara(int tam);
+		void codificar(std:: string nombre);
+		void listarFrecuencias();
 };
 
 #include "Sistema.hpp"

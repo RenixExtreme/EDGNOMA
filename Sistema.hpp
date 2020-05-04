@@ -276,6 +276,52 @@ void Sistema::guardar(std::string nombre){
 	archivo.close();
 }
 
+//  El comando debe generar el archivo binario con la correspondiente
+//  codificación de Huffman en el formato descrito más arriba
+//  almacenándolo en disco bajo el nombre nombre_archivo.fabin.
+void Sistema::codificar(std::string nombre){
+	//ci y fi son dos números entero de 1 y 8 bytes
+	listarFrecuencias();	
+}
+
+void Sistema::listarFrecuencias(){
+
+	Frecuencia temporal;
+	char ci;
+	long fi;
+
+	std::list<Secuencia>::iterator itS;
+	std::list<char>::iterator itC, itSubC;
+
+	std::list<char> basesTodas;
+	std::list<char> basesUnicas;
+
+	
+    for(itS=secuencias.begin();itS!=secuencias.end();itS++){
+		for(itC=itS->getSecuencia().begin();itC!=itS->getSecuencia().end();itC++){
+			basesTodas.push_back(*itC);
+			basesUnicas.push_back(*itC);
+		}
+	}
+
+	basesUnicas.sort();
+	basesUnicas.unique();
+
+	for(itC=basesUnicas.begin();itC!=basesUnicas.end();itC++){
+		fi=0;
+		for(itSubC=basesTodas.begin();itSubC!=basesTodas.end();itSubC++){
+			if(*itC==*itSubC){
+				fi++;
+			}
+		}
+		ci=*itC;
+		temporal.setCi(ci);
+		temporal.setFi(fi);
+		frecuencias.push_back(temporal);
+		std::cout<<"letra "<<ci<<std::endl<<"veces"<<fi<<std::endl;
+	}
+}
+
 //Procedimiento que provee las ayudas al usuario sobre como utilizar lso comandos del sistema
 void Sistema:: menu_aiuda(std::string comando){
 	int opc=0;
