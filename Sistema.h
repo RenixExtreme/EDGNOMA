@@ -30,7 +30,7 @@ class Sistema {
 		void enmascarar(std:: string comando);
 		std::string mascara(int tam);
 		void codificar(std:: string nombre);
-		void listarFrecuencias();
+		void almacenarFrecuencias();
 		void algoritmoHuffman();
 };
 

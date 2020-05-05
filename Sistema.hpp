@@ -106,27 +106,30 @@ void Sistema::conteo(){
     }
 }
 
-//Procedimiento que cuenta las bases y ayuda a la funcion
-short Sistema:: cantbases(std::list<char> lista)
+//Procedimiento que cuenta las bases y ayuda a la funcions
+short  Sistema:: cantbases(std::list<char> lista)
 {
-    char bases[]= {'A','U','T','G','C','a','u','t','g','c'};
-    int cant=0;
+	  std::list<char> bases;
+		bases.push_front('A');
+		bases.push_front('U');
+		bases.push_front('T');
+		bases.push_front('G');
+		bases.push_front('C');
+		bases.push_front('a');
+		bases.push_front('u');
+		bases.push_front('t');
+		bases.push_front('g');
+		bases.push_front('c');
     char c;
     int n=lista.size();
     for (int i=0; i < n; i++)
     {
         c=lista.front();
-        for(int j=0; j < 10; j++)
-        {
-            if(c == bases[j]){
-                cant++;
-            }
-        }
+        bases.remove(c);
         lista.pop_front();
     }
-    return cant;
+    return 10-(bases.size());
 }
-
 //Procedimiento para listar las secuencias
 void Sistema:: listar_secuencias()
 {
@@ -302,15 +305,17 @@ void Sistema::codificar(std::string nombre){
 			basesUnicas.push_back(*itC);
 		}
 	}
-	
+	/*
 	basesUnicas.sort();
 	basesUnicas.unique();
+	*/
 	n=cantbases(basesUnicas);
 	ns=secuencias.size();
+
 	std::cout<<"La estructura acontinuacion: "<<n;
 
 	//Aqui las frecuencias quedan en el sistema en la lista frecuencias
-	listarFrecuencias();
+	almacenarFrecuencias();
 
 	//ci y fi
 	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
@@ -345,14 +350,10 @@ void Sistema::codificar(std::string nombre){
 }
 
 void Sistema::algoritmoHuffman(){
-	list<TablaHuffman> tabla;
-	TablaHuffman unico;
+	std::list<TablaHuffman> tabla, paralela;
+	std::list<TablaHuffman>::iterator itT, itTSubMenor, itTSubMayor; 
+	TablaHuffman unico, temporalMayor, temporalMenor, temporalSuma;
 
-	char dato;
-    long peso;
-    int izquierda;
-    int derecha;
-    bool sumado;
 
 	std::list<Frecuencia>::iterator itF;
 
@@ -362,15 +363,24 @@ void Sistema::algoritmoHuffman(){
 		unico.izquierda=0;
 		unico.derecha=0;
 		unico.sumado=false;
-
-		std::cout<<"\n"<<unico.dato<<" "<<unico.peso<<std::endl;
+		tabla.push_back(unico);
 	}
+	/*
+	paralela=tabla;
+	paralela.sort();
 
-	
-
+	for(itT=tabla.begin();itT!=tabla.end();itT++){
+		for(itTSubMenor=tabla.begin();itTSubMenor!=tabla.end();itTSubMenor++){
+			if(itT->peso>){
+				temporalMenor.peso=
+			}
+		}
+		std::cout<<itT->dato<<" "<<itT->peso<<std::endl;
+	}
+	*/
 }
 // Esta funcion coloca en la list frecucencias, la base y la cantidad de veces que aparece en todas las secuencias
-void Sistema::listarFrecuencias(){
+void Sistema::almacenarFrecuencias(){
 
 	Frecuencia temporal;
 	char ci;
