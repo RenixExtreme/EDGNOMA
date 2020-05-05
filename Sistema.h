@@ -29,7 +29,6 @@ class Sistema {
 		void subsecuencia(std:: string subsecuencia);
 		std::string mascara(int tam);
 		void enmascarar(std:: string comando);
-		std::string mascara(int tam);
 		void codificar(std:: string nombre);
 		void almacenarFrecuencias();
 		void algoritmoHuffman();

@@ -287,15 +287,14 @@ void Sistema::codificar(std::string nombre){
 	//ci y fi son dos números entero de 1 y 8 bytes
 
 	std::list<char> basesUnicas;
-
 	std::list<Secuencia>::iterator itS;
 	std::list<char>::iterator itC;
 	std::list<Frecuencia>::iterator itF;
 
-
+	std::string estructuraStr;
 	//Variables de estructura de codigo
 	//n
-	short n;
+	short n, p;
 	//ns
 	int ns;
 
@@ -312,7 +311,13 @@ void Sistema::codificar(std::string nombre){
 	n=cantbases(basesUnicas);
 	ns=secuencias.size();
 
+	//Aqui se crea y se guarda el archivo .fabin
+	ofstream archivo(nombre, ios::binary );
+
+	archivo.write((char *)(&n), sizeof(short));
+
 	std::cout<<"La estructura acontinuacion: "<<n;
+	estructuraStr = n;
 
 	//Aqui las frecuencias quedan en el sistema en la lista frecuencias
 	almacenarFrecuencias();
@@ -320,7 +325,14 @@ void Sistema::codificar(std::string nombre){
 	//ci y fi
 	for(itF=frecuencias.begin();itF!=frecuencias.end();itF++){
 		std::cout<<itF->getCi()<<itF->getFi();
+		char a=itF->getCi();
+		long b=itF->getFi();
+		estructuraStr += a;
+		estructuraStr += b;
+		
 	}
+
+	archivo.write((char *)(&ns), sizeof(int));
 
 	std::cout<<ns;
 
@@ -344,6 +356,23 @@ void Sistema::codificar(std::string nombre){
 		short xi=50;
 		std::cout<<wi<<xi;
 	}
+
+	
+	archivo.close();
+
+	n=1;
+
+	ifstream lectura(nombre, ios::binary );
+
+	if(!lectura)
+		std::cerr<<"error";
+
+	lectura.read((char *)(&p), sizeof(short));
+
+	std::cout<<"Aqui comemos pizza: "<<p<<std::endl;
+	lectura.close();
+	
+
 	algoritmoHuffman();
 
 	std::cout<<std::endl;
