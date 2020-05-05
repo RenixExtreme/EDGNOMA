@@ -27,6 +27,7 @@ class Sistema {
 		void listar_secuencias();
 		void histograma(std::string nameSecuencia);
 		void subsecuencia(std:: string subsecuencia);
+		std::string mascara(int tam);
 		void enmascarar(std:: string comando);
 		std::string mascara(int tam);
 		void codificar(std:: string nombre);
